@@ -1,111 +1,91 @@
-import { motion, useInView, useSpring, useTransform } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 
-function AnimatedNumber({ value, suffix = "", prefix = "" }: { value: number; suffix?: string; prefix?: string }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+function AnimatedNumber({ value, suffix = "" }: { value: number; suffix?: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
   const [displayed, setDisplayed] = useState(0);
-
-  const spring = useSpring(0, { duration: 2000, bounce: 0 });
-  const rounded = useTransform(spring, (v) => Math.round(v));
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
-    if (isInView) spring.set(value);
-  }, [isInView, value, spring]);
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+          const start = performance.now();
+          const duration = 2000;
+          const animate = (now: number) => {
+            const progress = Math.min((now - start) / duration, 1);
+            setDisplayed(Math.round(progress * value));
+            if (progress < 1) requestAnimationFrame(animate);
+          };
+          requestAnimationFrame(animate);
+        }
+      },
+      { threshold: 0.5 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [value, hasAnimated]);
 
-  useEffect(() => {
-    return rounded.on("change", (v) => setDisplayed(v));
-  }, [rounded]);
-
-  return (
-    <span ref={ref}>
-      {prefix}{displayed.toLocaleString()}{suffix}
-    </span>
-  );
+  return <span ref={ref}>{displayed.toLocaleString()}{suffix}</span>;
 }
 
 const stats = [
-  { value: 30, suffix: "K+", label: "Website Page Views" },
-  { value: 178, suffix: "K+", label: "Social Media Reach" },
-  { value: 28, suffix: "K", label: "Google Search Impressions" },
-  { value: 3, suffix: "x", label: "Email List Growth" },
+  { value: 30, suffix: "K+", label: "Website Page Views", gradient: "linear-gradient(135deg, var(--magenta), #c4187a)" },
+  { value: 178, suffix: "K+", label: "Social Media Reach", gradient: "linear-gradient(135deg, var(--teal), #009990)" },
+  { value: 28, suffix: "K+", label: "Search Impressions", gradient: "linear-gradient(135deg, var(--orange), #c45200)" },
+  { value: 3, suffix: "×", label: "Email List Growth", gradient: "linear-gradient(135deg, #5a7505, #b8e60d)" },
 ];
 
+const tags = ["SEO", "GBP", "Social", "Email", "Outreach", "Content"];
+
 export function CaseStudySection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
-    <section ref={ref} className="relative py-32 px-6 overflow-hidden">
-      {/* Background accent */}
-      <div
-        className="absolute inset-0"
-        style={{ background: "radial-gradient(ellipse at 50% 0%, oklch(0.72 0.22 330 / 5%), transparent 60%)" }}
-      />
+    <section className="py-[120px] px-8 max-w-[1200px] mx-auto" id="results">
+      <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-orange-soft text-[#c45200] rounded-full text-xs font-semibold tracking-wide mb-5">
+        Real Results
+      </span>
+      <h2 className="text-[clamp(36px,5vw,60px)] font-bold leading-[1.05] tracking-[-0.03em] max-w-[880px] mb-5">
+        From zero to 30,000<br />
+        <span className="gradient-accent">page views in 12 months.</span>
+      </h2>
+      <p className="text-[19px] leading-relaxed text-ink-soft max-w-[680px] mb-[60px]">
+        No physical location. No paid ads. No head start. Just a single connected system where every channel reinforced the others.
+      </p>
 
-      <div className="relative mx-auto max-w-7xl">
-        <div className="text-center mb-16">
-          <motion.span
-            className="inline-block text-xs font-medium tracking-[0.2em] uppercase text-brand-pink mb-6"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-          >
-            Results
-          </motion.span>
+      <div className="bg-bg-soft rounded-[32px] p-8 md:p-16 relative overflow-hidden">
+        <div className="absolute -top-[100px] -right-[100px] w-[400px] h-[400px] pointer-events-none" style={{ background: "radial-gradient(circle, rgba(233,30,138,0.08), transparent 70%)" }} />
 
-          <motion.h2
-            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.1 }}
-          >
-            Zero to <span className="text-gradient-pink">30K Page Views</span>
-            <br />
-            in 12 Months.
-          </motion.h2>
-
-          <motion.p
-            className="mt-6 text-muted-foreground max-w-xl mx-auto"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ delay: 0.2 }}
-          >
-            What happens when every channel works together as one system — even without a physical storefront.
-          </motion.p>
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-10 mb-[50px] pb-8 border-b border-line relative z-10">
+          <div>
+            <p className="text-sm text-ink-mute font-semibold uppercase tracking-wider mb-1">Featured Case Study</p>
+            <p className="text-[32px] font-bold tracking-tight">Sarasota Children's Museum</p>
+          </div>
+          <div className="flex gap-1.5 flex-wrap md:justify-end md:max-w-[320px]">
+            {tags.map((t) => (
+              <span key={t} className="text-[11px] font-semibold px-2.5 py-1 bg-white border border-line rounded-full text-ink-soft">{t}</span>
+            ))}
+          </div>
         </div>
 
-        {/* Stats grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-          {stats.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              className="rounded-2xl glow-border glass p-8 text-center"
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 + i * 0.1 }}
-            >
-              <div className="text-4xl md:text-5xl font-bold text-gradient-hero">
+        {/* Stats */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
+          {stats.map((stat) => (
+            <div key={stat.label}>
+              <div className="text-[clamp(48px,5vw,68px)] font-bold tracking-[-0.04em] leading-none" style={{ background: stat.gradient, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
                 <AnimatedNumber value={stat.value} suffix={stat.suffix} />
               </div>
-              <p className="mt-3 text-sm text-muted-foreground">{stat.label}</p>
-            </motion.div>
+              <p className="text-[13px] text-ink-soft font-medium mt-3 leading-snug">{stat.label}</p>
+            </div>
           ))}
         </div>
 
-        {/* Client badge */}
-        <motion.div
-          className="mt-12 text-center"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.8 }}
-        >
-          <div className="inline-flex items-center gap-3 rounded-full border border-border px-6 py-3">
-            <div className="h-2 w-2 rounded-full bg-brand-green animate-pulse" />
-            <span className="text-sm text-muted-foreground">
-              <strong className="text-foreground">Sarasota Children's Museum</strong> · 12 Months · Built from 0 · No Physical Location
-            </span>
-          </div>
-        </motion.div>
+        {/* Summary */}
+        <p className="mt-10 pt-8 border-t border-line text-[17px] leading-relaxed text-ink-soft max-w-[800px] relative z-10">
+          No storefront. No foot traffic. No head start. Just a connected digital strategy where <strong className="text-ink font-semibold">SEO fed the website, social built trust, GBP drove calls, and email nurtured the community</strong>. Every channel part of one system — and the numbers compounded month over month.
+        </p>
       </div>
     </section>
   );

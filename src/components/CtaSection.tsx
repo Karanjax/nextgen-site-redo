@@ -1,46 +1,45 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { Button } from "@/components/ui/button";
-
 export function CtaSection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
-    <section ref={ref} className="relative py-32 px-6 overflow-hidden">
-      <div
-        className="absolute inset-0"
-        style={{
-          background: "radial-gradient(ellipse at 50% 50%, oklch(0.72 0.22 330 / 8%), transparent 50%), radial-gradient(ellipse at 80% 20%, oklch(0.65 0.20 260 / 6%), transparent 50%)",
-        }}
-      />
+    <section className="py-[120px] px-8 text-white relative overflow-hidden" style={{ background: "linear-gradient(135deg, #0b1437 0%, #1a2756 100%)" }} id="cta">
+      <div className="absolute -top-[200px] left-[20%] w-[600px] h-[600px] blur-[40px] pointer-events-none" style={{ background: "radial-gradient(circle, rgba(233,30,138,0.4), transparent 60%)" }} />
+      <div className="absolute -bottom-[200px] right-[10%] w-[600px] h-[600px] blur-[40px] pointer-events-none" style={{ background: "radial-gradient(circle, rgba(0,191,179,0.3), transparent 60%)" }} />
 
-      <motion.div
-        className="relative mx-auto max-w-3xl text-center"
-        initial={{ opacity: 0, y: 40 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8 }}
-      >
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-          Ready to Build a Digital Presence
-          <br />
-          <span className="text-gradient-pink">That Can't Be Beat?</span>
+      <div className="max-w-[900px] mx-auto text-center relative z-10">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[13px] font-medium mb-6" style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)" }}>
+          <span className="w-2 h-2 rounded-full bg-lime animate-[pulse-dot_1.5s_infinite]" />
+          Free 30-min visibility audit · No commitment
+        </div>
+
+        <h2 className="text-[clamp(48px,6vw,76px)] font-bold tracking-[-0.035em] leading-[1.05] mb-5">
+          Let's get you found.<br />
+          <span style={{ background: "linear-gradient(135deg, #e91e8a 0%, #ff7a1a 50%, #b8e60d 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>And keep you there.</span>
         </h2>
 
-        <p className="mt-8 text-lg text-muted-foreground max-w-xl mx-auto">
-          Let's connect your SEO, website, social, and automations into one
-          system that compounds — and start seeing real results.
+        <p className="text-[19px] opacity-85 max-w-[600px] mx-auto mb-9 leading-relaxed">
+          We'll show you exactly where ChatGPT, Perplexity, and Google's AI Overviews are sending your prospects — and how to redirect that traffic to you.
         </p>
 
-        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button variant="hero" size="lg" className="rounded-full px-10 py-6 text-base">
-            Book a Strategy Call
-          </Button>
-          <Button variant="heroOutline" size="lg" className="rounded-full px-10 py-6 text-base">
-            See All Services
-          </Button>
+        <div className="flex gap-3 justify-center flex-wrap">
+          <a
+            href="#"
+            className="inline-flex items-center gap-2.5 px-8 py-[18px] rounded-full text-base font-semibold bg-white text-ink transition-all duration-200 hover:-translate-y-0.5"
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "linear-gradient(135deg, var(--magenta), var(--orange))";
+              e.currentTarget.style.color = "white";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "white";
+              e.currentTarget.style.color = "var(--ink)";
+            }}
+          >
+            Book my free audit
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+          <a href="#" className="px-7 py-[18px] rounded-full text-base font-semibold" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.15)" }}>
+            See pricing
+          </a>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

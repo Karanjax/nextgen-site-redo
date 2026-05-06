@@ -1,123 +1,63 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-
 const phases = [
   {
-    number: "01",
-    title: "Be Found",
-    description: "Build the technical foundation that makes you visible — in Google, in AI search, and on the map.",
-    services: ["Search Engine Optimization", "Google Business Profile", "Technical Site Foundation"],
-    gradient: "from-brand-blue to-brand-purple",
-    accentColor: "oklch(0.65 0.20 260)",
+    num: "PHASE 01",
+    title: "Be Found.",
+    desc: "Build the technical foundation that makes you visible — in Google, in AI search, on the map. Schema-first, answer-engine ready from day one.",
+    services: ["SEO + AEO + GEO", "Google Business Profile", "Schema architecture"],
+    gradient: "linear-gradient(135deg, var(--magenta), #c4187a)",
   },
   {
-    number: "02",
-    title: "Build Trust",
-    description: "Turn visibility into credibility with a site and social presence that converts visitors into customers.",
+    num: "PHASE 02",
+    title: "Build Trust.",
+    desc: "Turn visibility into credibility with a fast, beautiful site and consistent social presence that makes the choice obvious.",
     services: ["Website Development", "Social Media Management", "Content Strategy"],
-    gradient: "from-brand-purple to-brand-pink",
-    accentColor: "oklch(0.72 0.22 330)",
+    gradient: "linear-gradient(135deg, var(--teal), #009990)",
   },
   {
-    number: "03",
-    title: "Fuel Growth",
-    description: "Scale what's working with intelligent automation and outreach that runs while you sleep.",
-    services: ["Automations & AI", "LinkedIn + Email Outreach", "Reporting & Optimization"],
-    gradient: "from-brand-pink to-brand-orange",
-    accentColor: "oklch(0.75 0.18 55)",
+    num: "PHASE 03",
+    title: "Fuel Growth.",
+    desc: "Scale what's working with intelligent automation and outbound that runs while you sleep. Pipelines, not just posts.",
+    services: ["Automations + AI", "LinkedIn + Email Outreach", "Reporting + Optimization"],
+    gradient: "linear-gradient(135deg, var(--orange), #d45f0d)",
   },
 ];
 
-function PhaseCard({ phase, index }: { phase: typeof phases[0]; index: number }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
-
-  return (
-    <motion.div
-      ref={ref}
-      className="group relative"
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay: index * 0.15 }}
-    >
-      <div className="relative rounded-3xl glow-border p-8 md:p-10 glass overflow-hidden transition-all duration-500 hover:scale-[1.02]">
-        {/* Hover glow */}
-        <div
-          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"
-          style={{ background: `radial-gradient(circle at 50% 100%, ${phase.accentColor} / 8%, transparent 60%)` }}
-        />
-
-        <div className="relative z-10">
-          <span className={`text-xs font-bold tracking-[0.3em] uppercase bg-gradient-to-r ${phase.gradient} bg-clip-text text-transparent`}>
-            Phase {phase.number}
-          </span>
-
-          <h3 className="mt-4 text-3xl md:text-4xl font-bold tracking-tight">{phase.title}</h3>
-
-          <p className="mt-4 text-muted-foreground leading-relaxed">{phase.description}</p>
-
-          <ul className="mt-8 space-y-3">
-            {phase.services.map((service) => (
-              <li key={service} className="flex items-center gap-3 text-sm text-secondary-foreground">
-                <span
-                  className="h-1.5 w-1.5 rounded-full flex-shrink-0"
-                  style={{ backgroundColor: phase.accentColor }}
-                />
-                {service}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
-
 export function FrameworkSection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
-    <section ref={ref} className="relative py-32 px-6">
-      <div className="mx-auto max-w-7xl">
-        <div className="text-center mb-20">
-          <motion.span
-            className="inline-block text-xs font-medium tracking-[0.2em] uppercase text-brand-pink mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
+    <section className="py-[120px] px-8 max-w-[1200px] mx-auto" id="framework">
+      <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-teal-soft text-[#008b82] rounded-full text-xs font-semibold tracking-wide mb-5">
+        The Be Found Framework™
+      </span>
+      <h2 className="text-[clamp(36px,5vw,60px)] font-bold leading-[1.05] tracking-[-0.03em] max-w-[880px] mb-5">
+        Three phases.<br />
+        <span className="gradient-accent">One operating system.</span>
+      </h2>
+      <p className="text-[19px] leading-relaxed text-ink-soft max-w-[680px] mb-[60px]">
+        Each phase compounds on the last. Visibility builds trust. Trust drives growth. Every dollar you spend gets stronger over time.
+      </p>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {phases.map((phase, i) => (
+          <div
+            key={phase.num}
+            className="bg-white border border-line rounded-3xl p-8 relative overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_4px_12px_rgba(11,20,55,0.06),0_12px_32px_rgba(11,20,55,0.08)] hover:border-transparent group"
           >
-            The Be Found Framework™
-          </motion.span>
-
-          <motion.h2
-            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.1 }}
-          >
-            Three Phases. One System.
-            <br />
-            <span className="text-gradient-hero">Everything Connected.</span>
-          </motion.h2>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
-          {phases.map((phase, i) => (
-            <PhaseCard key={phase.number} phase={phase} index={i} />
-          ))}
-        </div>
-
-        {/* Connection line */}
-        <div className="hidden md:flex items-center justify-center mt-12">
-          <motion.div
-            className="h-px flex-1 max-w-md"
-            style={{ background: "linear-gradient(90deg, transparent, oklch(0.65 0.20 260), oklch(0.72 0.22 330), oklch(0.75 0.18 55), transparent)" }}
-            initial={{ scaleX: 0 }}
-            animate={isInView ? { scaleX: 1 } : {}}
-            transition={{ duration: 1.2, delay: 0.5 }}
-          />
-        </div>
+            <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 relative" style={{ background: phase.gradient }}>
+              <div className="absolute w-7 h-7 rounded-full bg-white/85" />
+            </div>
+            <span className="absolute top-8 right-8 font-mono text-[11px] text-ink-mute tracking-wider">{phase.num}</span>
+            <h3 className="text-[28px] font-bold tracking-tight mb-3">{phase.title}</h3>
+            <p className="text-[15px] leading-relaxed text-ink-soft mb-6">{phase.desc}</p>
+            <ul className="border-t border-line pt-4.5 flex flex-col gap-2.5">
+              {phase.services.map((s) => (
+                <li key={s} className="flex justify-between items-center text-sm font-medium text-ink">
+                  {s}
+                  <span className="text-ink-mute text-sm transition-all duration-200 group-hover:text-magenta group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </section>
   );
