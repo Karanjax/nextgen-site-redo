@@ -1,56 +1,73 @@
 import { Link } from "@tanstack/react-router";
-import { motion, useScroll, useTransform } from "framer-motion";
 
 const navLinks = [
-  { label: "Services", href: "/services" },
-  { label: "About", href: "/about" },
-  { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "/contact" },
+  { label: "Framework", href: "#framework" },
+  { label: "Results", href: "#results" },
+  { label: "About", href: "#about" },
+  { label: "Insights", href: "#blog" },
+  { label: "Pricing", href: "#pricing" },
 ];
 
 export function Navbar() {
-  const { scrollY } = useScroll();
-  const bgOpacity = useTransform(scrollY, [0, 100], [0, 0.85]);
-  const blur = useTransform(scrollY, [0, 100], [0, 24]);
-
   return (
-    <motion.nav
-      className="fixed top-0 left-0 right-0 z-50"
+    <nav
+      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-32px)] max-w-[1200px]"
       style={{
-        backgroundColor: useTransform(bgOpacity, (v) => `oklch(0.11 0.02 270 / ${v})`),
-        backdropFilter: useTransform(blur, (v) => `blur(${v}px)`),
+        display: "grid",
+        gridTemplateColumns: "auto 1fr auto",
+        alignItems: "center",
+        gap: "32px",
+        padding: "12px 12px 12px 24px",
+        background: "rgba(255, 255, 255, 0.85)",
+        backdropFilter: "blur(20px)",
+        border: "1px solid var(--line)",
+        borderRadius: "100px",
+        boxShadow: "0 1px 2px rgba(11,20,55,0.04), 0 2px 6px rgba(11,20,55,0.04)",
       }}
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="flex h-20 items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
-            <img
-              src="https://tamberra.s3.us-east-2.amazonaws.com/wp-content/uploads/20250322143043/logo-white.png"
-              alt="Woman In Tech"
-              className="h-12 w-auto"
-            />
-          </Link>
+      <Link to="/" className="flex items-center gap-2.5 font-bold text-[17px] tracking-tight">
+        <span className="flex gap-0.5">
+          <span className="w-2 h-2 rounded-sm bg-magenta" />
+          <span className="w-2 h-2 rounded-sm bg-teal" />
+          <span className="w-2 h-2 rounded-sm bg-lime" />
+          <span className="w-2 h-2 rounded-sm bg-orange" />
+        </span>
+        Woman In Tech
+      </Link>
 
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                to={link.href}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-300 relative group"
-              >
-                {link.label}
-                <span className="absolute -bottom-1 left-0 h-px w-0 bg-brand-pink group-hover:w-full transition-all duration-300" />
-              </Link>
-            ))}
-            <Link
-              to="/contact"
-              className="ml-4 rounded-full bg-gradient-to-r from-brand-pink to-brand-purple px-5 py-2 text-sm font-semibold text-foreground hover:shadow-lg hover:shadow-brand-pink/20 transition-all duration-300 hover:scale-105"
-            >
-              Get Started
-            </Link>
-          </div>
-        </div>
+      <div className="hidden md:flex gap-2 justify-center">
+        {navLinks.map((link) => (
+          <a
+            key={link.href}
+            href={link.href}
+            className="px-3.5 py-2 text-sm font-medium rounded-full text-ink-soft hover:text-ink hover:bg-bg-tint transition-all duration-200"
+          >
+            {link.label}
+          </a>
+        ))}
       </div>
-    </motion.nav>
+
+      <a
+        href="#cta"
+        className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-sm font-semibold text-white transition-all duration-200"
+        style={{
+          background: "var(--ink)",
+          boxShadow: "0 1px 0 rgba(255,255,255,0.1) inset, 0 2px 8px rgba(11,20,55,0.15)",
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.background = "linear-gradient(135deg, #e91e8a, #ff7a1a)";
+          e.currentTarget.style.boxShadow = "0 8px 20px rgba(233,30,138,0.3)";
+          e.currentTarget.style.transform = "translateY(-1px)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.background = "var(--ink)";
+          e.currentTarget.style.boxShadow = "0 1px 0 rgba(255,255,255,0.1) inset, 0 2px 8px rgba(11,20,55,0.15)";
+          e.currentTarget.style.transform = "translateY(0)";
+        }}
+      >
+        Book a call
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </nav>
   );
 }
