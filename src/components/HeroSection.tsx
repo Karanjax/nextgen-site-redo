@@ -1,6 +1,15 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (delay: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] },
+  }),
+};
+
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -37,10 +46,12 @@ export function HeroSection() {
 
       <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-6"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          custom={0}
         >
           <span className="inline-flex items-center gap-2 rounded-full border border-brand-pink/20 bg-brand-pink/5 px-4 py-1.5 text-xs font-medium tracking-wider uppercase text-brand-pink">
             <span className="h-1.5 w-1.5 rounded-full bg-brand-pink animate-pulse" />
@@ -50,9 +61,11 @@ export function HeroSection() {
 
         <motion.h1
           className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.95]"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          custom={0.15}
         >
           <span className="text-gradient-hero">Be Seen.</span>
           <br />
@@ -63,9 +76,11 @@ export function HeroSection() {
 
         <motion.p
           className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.5 }}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          custom={0.3}
         >
           A connected digital strategy that builds visibility, earns credibility,
           and scales what's working — so every dollar you spend compounds.
@@ -73,9 +88,11 @@ export function HeroSection() {
 
         <motion.div
           className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.7 }}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          custom={0.45}
         >
           <Button variant="hero" size="lg" className="rounded-full px-8 py-6 text-base">
             Start Your Strategy
