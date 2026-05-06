@@ -1,37 +1,22 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (delay: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
-  }),
-};
-
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Ambient gradient orbs */}
       <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full"
+        <div
+          className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full animate-pulse"
           style={{ background: "radial-gradient(circle, oklch(0.72 0.22 330 / 12%), transparent 70%)" }}
-          animate={{ scale: [1, 1.2, 1], x: [0, 30, 0], y: [0, -20, 0] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
-        <motion.div
-          className="absolute -bottom-60 -left-40 w-[800px] h-[800px] rounded-full"
-          style={{ background: "radial-gradient(circle, oklch(0.65 0.20 260 / 10%), transparent 70%)" }}
-          animate={{ scale: [1.2, 1, 1.2], x: [0, -20, 0] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        <div
+          className="absolute -bottom-60 -left-40 w-[800px] h-[800px] rounded-full animate-pulse"
+          style={{ background: "radial-gradient(circle, oklch(0.65 0.20 260 / 10%), transparent 70%)", animationDelay: "2s" }}
         />
-        <motion.div
-          className="absolute top-1/3 left-1/2 w-[400px] h-[400px] rounded-full"
-          style={{ background: "radial-gradient(circle, oklch(0.55 0.25 295 / 8%), transparent 70%)" }}
-          animate={{ y: [0, 40, 0] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        <div
+          className="absolute top-1/3 left-1/2 w-[400px] h-[400px] rounded-full animate-pulse"
+          style={{ background: "radial-gradient(circle, oklch(0.55 0.25 295 / 8%), transparent 70%)", animationDelay: "4s" }}
         />
       </div>
 
@@ -45,62 +30,34 @@ export function HeroSection() {
       />
 
       <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
-        <motion.div
-          className="mb-6"
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          custom={0}
-        >
+        <div className="mb-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
           <span className="inline-flex items-center gap-2 rounded-full border border-brand-pink/20 bg-brand-pink/5 px-4 py-1.5 text-xs font-medium tracking-wider uppercase text-brand-pink">
             <span className="h-1.5 w-1.5 rounded-full bg-brand-pink animate-pulse" />
             Digital Strategy That Compounds
           </span>
-        </motion.div>
+        </div>
 
-        <motion.h1
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.95]"
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          custom={0.15}
-        >
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.95] animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-200">
           <span className="text-gradient-hero">Be Seen.</span>
           <br />
           <span className="text-gradient-hero">Be Trusted.</span>
           <br />
           <span className="text-gradient-pink">Grow Confidently.</span>
-        </motion.h1>
+        </h1>
 
-        <motion.p
-          className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          custom={0.3}
-        >
+        <p className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-700 delay-500">
           A connected digital strategy that builds visibility, earns credibility,
           and scales what's working — so every dollar you spend compounds.
-        </motion.p>
+        </p>
 
-        <motion.div
-          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          custom={0.45}
-        >
+        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-700">
           <Button variant="hero" size="lg" className="rounded-full px-8 py-6 text-base">
             Start Your Strategy
           </Button>
           <Button variant="heroOutline" size="lg" className="rounded-full px-8 py-6 text-base">
             See the Framework
           </Button>
-        </motion.div>
+        </div>
 
         {/* Scroll indicator */}
         <motion.div
