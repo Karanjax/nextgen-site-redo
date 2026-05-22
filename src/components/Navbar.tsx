@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import witLogo from "@/assets/wit-logo.png";
 
 const navLinks = [
   { label: "Framework", href: "#framework" },
