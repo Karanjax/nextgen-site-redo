@@ -27,12 +27,13 @@ export function Navbar() {
       }}
     >
       <Link to="/" className="flex items-center gap-2.5 font-bold text-[17px] tracking-tight">
-        <span className="flex gap-0.5">
-          <span className="w-2 h-2 rounded-sm bg-magenta" />
-          <span className="w-2 h-2 rounded-sm bg-teal" />
-          <span className="w-2 h-2 rounded-sm bg-lime" />
-          <span className="w-2 h-2 rounded-sm bg-orange" />
-        </span>
+        <img
+          src={witLogo}
+          alt="Woman In Tech logo"
+          width={32}
+          height={32}
+          className="w-8 h-8 object-contain"
+        />
         Woman In Tech
       </Link>
 
