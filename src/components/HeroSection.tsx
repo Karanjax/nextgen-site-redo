@@ -1,64 +1,121 @@
+import karaPortrait from "@/assets/kara-portrait.jpg";
+
 export function HeroSection() {
   return (
     <section className="relative">
       {/* Gradient mesh background */}
-      <div className="absolute top-0 left-0 right-0 h-[900px] -z-10 overflow-hidden" style={{ background: "linear-gradient(135deg, #fff5fb 0%, #f0fbfa 35%, #fef9eb 70%, #fff1e6 100%)" }}>
+      <div className="absolute top-0 left-0 right-0 h-[1100px] -z-10 overflow-hidden" style={{ background: "linear-gradient(135deg, #fff5fb 0%, #f0fbfa 35%, #fef9eb 70%, #fff1e6 100%)" }}>
         <div className="absolute -top-[100px] -left-[50px] w-[600px] h-[600px] rounded-full opacity-[0.18] blur-[80px] animate-[float_20s_ease-in-out_infinite]" style={{ background: "var(--magenta)" }} />
         <div className="absolute top-[100px] -right-[100px] w-[700px] h-[700px] rounded-full opacity-[0.18] blur-[80px] animate-[float_20s_ease-in-out_infinite_-7s]" style={{ background: "var(--teal)" }} />
         <div className="absolute top-[400px] left-[30%] w-[500px] h-[500px] rounded-full opacity-[0.12] blur-[80px] animate-[float_20s_ease-in-out_infinite_-14s]" style={{ background: "var(--orange)" }} />
+        {/* Subtle grid overlay */}
+        <div className="absolute inset-0 opacity-[0.25]" style={{ backgroundImage: "linear-gradient(rgba(11,20,55,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(11,20,55,0.04) 1px, transparent 1px)", backgroundSize: "48px 48px", maskImage: "radial-gradient(ellipse at center, black 30%, transparent 75%)" }} />
       </div>
 
       <div className="relative max-w-[1200px] mx-auto px-8 pt-[140px] pb-[100px]">
-        {/* Eyebrow */}
-        <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 pr-3.5 pl-1.5 bg-white border border-line rounded-full text-[13px] font-medium text-ink-soft mb-7" style={{ boxShadow: "0 1px 2px rgba(11,20,55,0.04), 0 2px 6px rgba(11,20,55,0.04)" }}>
-          <span className="gradient-cta text-white px-2.5 py-0.5 rounded-full text-[11px] font-semibold tracking-wide">NEW</span>
-          Now optimizing for ChatGPT, Perplexity & Google AI Overviews
+        <div className="grid lg:grid-cols-[1.25fr_1fr] gap-14 items-center">
+          {/* Left: copy */}
+          <div>
+            {/* Eyebrow */}
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 pr-3.5 pl-1.5 bg-white border border-line rounded-full text-[13px] font-medium text-ink-soft mb-7" style={{ boxShadow: "0 1px 2px rgba(11,20,55,0.04), 0 2px 6px rgba(11,20,55,0.04)" }}>
+              <span className="gradient-cta text-white px-2.5 py-0.5 rounded-full text-[11px] font-semibold tracking-wide">NEW</span>
+              Now optimizing for ChatGPT, Perplexity & Google AI Overviews
+            </div>
+
+            {/* Headline */}
+            <h1 className="text-[clamp(44px,6vw,76px)] font-bold leading-[1.02] tracking-[-0.035em] mb-6">
+              Stop being invisible<br />
+              <span className="gradient-text">in AI search.</span>
+            </h1>
+
+            {/* Subheadline */}
+            <p className="text-lg leading-relaxed text-ink-soft max-w-[560px] mb-9">
+              Your competitors are showing up in ChatGPT, Perplexity, and Google's AI Overviews. You're not. The Be Found Framework™ rebuilds your visibility from the ground up — so you're the answer, not the afterthought.
+            </p>
+
+            {/* Actions */}
+            <div className="flex gap-3 items-center mb-10 flex-wrap">
+              <a
+                href="#cta"
+                className="inline-flex items-center gap-2 px-7 py-4 rounded-full text-[15px] font-semibold text-white transition-all duration-200"
+                style={{ background: "var(--ink)", boxShadow: "0 4px 14px rgba(11,20,55,0.2)" }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "linear-gradient(135deg, #e91e8a, #ff7a1a)";
+                  e.currentTarget.style.transform = "translateY(-2px)";
+                  e.currentTarget.style.boxShadow = "0 12px 28px rgba(233,30,138,0.35)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "var(--ink)";
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow = "0 4px 14px rgba(11,20,55,0.2)";
+                }}
+              >
+                Book a free visibility audit
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+              <button className="inline-flex items-center gap-2 px-5 py-4 rounded-full text-[15px] font-semibold text-ink transition-all duration-200 hover:bg-white/60">
+                <span className="w-7 h-7 rounded-full bg-ink text-white inline-flex items-center justify-center text-[10px]">▶</span>
+                How it works
+              </button>
+            </div>
+
+            {/* Trust strip */}
+            <div className="flex items-center gap-5 pt-6 border-t border-ink/8 max-w-[560px]">
+              <span className="text-orange text-sm tracking-widest">★★★★★</span>
+              <span className="text-[13px] text-ink-soft">
+                Trusted by <strong className="text-ink font-semibold">80+ founders</strong> across legal, healthcare & professional services
+              </span>
+            </div>
+          </div>
+
+          {/* Right: visual collage */}
+          <div className="relative hidden lg:block h-[560px]">
+            {/* Color block backdrop */}
+            <div className="absolute top-8 right-4 w-[78%] h-[88%] rounded-[28px]" style={{ background: "linear-gradient(135deg, var(--magenta) 0%, var(--orange) 100%)", transform: "rotate(3deg)" }} />
+            <div className="absolute top-0 left-0 w-[55%] h-[55%] rounded-[24px] opacity-90" style={{ background: "linear-gradient(135deg, var(--teal), #0e8c6c)", transform: "rotate(-4deg)" }} />
+
+            {/* Portrait */}
+            <div className="absolute top-4 right-0 w-[82%] h-[90%] rounded-[24px] overflow-hidden border-4 border-white" style={{ boxShadow: "0 20px 60px rgba(11,20,55,0.18)" }}>
+              <img src={karaPortrait} alt="Kara Noreika, founder" className="w-full h-full object-cover" width={600} height={720} />
+              {/* Live badge */}
+              <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur text-[11px] font-semibold text-ink">
+                <span className="w-1.5 h-1.5 rounded-full bg-teal animate-[pulse-dot_1.5s_infinite]" />
+                LIVE · cited in ChatGPT today
+              </div>
+            </div>
+
+            {/* Floating stat cards */}
+            <div className="absolute top-[18%] -left-2 z-20 bg-white rounded-2xl px-4 py-3 flex items-center gap-3 border border-line animate-[gentle_6s_ease-in-out_infinite]" style={{ boxShadow: "0 12px 32px rgba(11,20,55,0.12)", transform: "rotate(-4deg)" }}>
+              <span className="w-9 h-9 rounded-xl flex items-center justify-center text-white text-base font-bold" style={{ background: "linear-gradient(135deg, var(--magenta), #c4187a)" }}>↑</span>
+              <span className="text-[12px]"><strong className="block font-bold text-[14px]">4.2× leads</strong><span className="text-ink-soft">in 90 days</span></span>
+            </div>
+
+            <div className="absolute bottom-[14%] -left-6 z-20 bg-white rounded-2xl p-3.5 border border-line animate-[gentle_6s_ease-in-out_infinite_-3s]" style={{ boxShadow: "0 12px 32px rgba(11,20,55,0.12)", transform: "rotate(2deg)", width: 180 }}>
+              <div className="text-[10px] font-semibold uppercase tracking-wider text-ink-soft mb-1.5">AI citations · 30d</div>
+              <div className="text-[20px] font-bold tracking-tight mb-2">+1,247%</div>
+              <div className="flex items-end gap-1 h-8">
+                {[20, 35, 28, 50, 45, 70, 92].map((h, i) => (
+                  <div key={i} className="flex-1 rounded-sm" style={{ height: `${h}%`, background: "linear-gradient(180deg, var(--magenta), var(--orange))" }} />
+                ))}
+              </div>
+            </div>
+
+            <div className="absolute top-[6%] -right-2 z-20 bg-ink text-white rounded-2xl px-4 py-3 flex items-center gap-2.5 animate-[gentle_6s_ease-in-out_infinite_-1.5s]" style={{ boxShadow: "0 12px 32px rgba(11,20,55,0.25)", transform: "rotate(4deg)" }}>
+              <span className="w-7 h-7 rounded-lg flex items-center justify-center text-[12px] font-bold" style={{ background: "linear-gradient(135deg, #10a37f, #0e8c6c)" }}>G</span>
+              <span className="text-[12px]"><strong className="block font-bold text-[13px]">Cited 14×</strong><span className="opacity-70">this week</span></span>
+            </div>
+
+            <div className="absolute bottom-[2%] right-6 z-20 bg-white rounded-full px-4 py-2.5 flex items-center gap-2 border border-line animate-[gentle_6s_ease-in-out_infinite_-4s]" style={{ boxShadow: "0 12px 32px rgba(11,20,55,0.12)" }}>
+              <span className="flex -space-x-1.5">
+                <span className="w-5 h-5 rounded-full border-2 border-white" style={{ background: "var(--magenta)" }} />
+                <span className="w-5 h-5 rounded-full border-2 border-white" style={{ background: "var(--teal)" }} />
+                <span className="w-5 h-5 rounded-full border-2 border-white" style={{ background: "var(--lime)" }} />
+              </span>
+              <span className="text-[12px] font-semibold">80+ founders</span>
+            </div>
+          </div>
         </div>
 
-        {/* Headline */}
-        <h1 className="text-[clamp(48px,7vw,88px)] font-bold leading-[1.02] tracking-[-0.035em] max-w-[920px] mb-6">
-          Stop being invisible<br />
-          <span className="gradient-text">in AI search.</span>
-        </h1>
-
-        {/* Subheadline */}
-        <p className="text-xl leading-relaxed text-ink-soft max-w-[640px] mb-9">
-          Your competitors are showing up in ChatGPT, Perplexity, and Google's AI Overviews. You're not. The Be Found Framework™ rebuilds your visibility from the ground up — so you're the answer, not the afterthought.
-        </p>
-
-        {/* Actions */}
-        <div className="flex gap-3 items-center mb-14 flex-wrap">
-          <a
-            href="#cta"
-            className="inline-flex items-center gap-2 px-7 py-4 rounded-full text-[15px] font-semibold text-white transition-all duration-200"
-            style={{ background: "var(--ink)", boxShadow: "0 4px 14px rgba(11,20,55,0.2)" }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = "linear-gradient(135deg, #e91e8a, #ff7a1a)";
-              e.currentTarget.style.transform = "translateY(-2px)";
-              e.currentTarget.style.boxShadow = "0 12px 28px rgba(233,30,138,0.35)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "var(--ink)";
-              e.currentTarget.style.transform = "translateY(0)";
-              e.currentTarget.style.boxShadow = "0 4px 14px rgba(11,20,55,0.2)";
-            }}
-          >
-            Book a free visibility audit
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </a>
-          <button className="inline-flex items-center gap-2 px-5.5 py-4 rounded-full text-[15px] font-semibold text-ink transition-all duration-200 hover:bg-white/60">
-            <span className="w-7 h-7 rounded-full bg-ink text-white inline-flex items-center justify-center text-[10px]">▶</span>
-            How it works
-          </button>
-        </div>
-
-        {/* Trust strip */}
-        <div className="flex items-center gap-5 pt-6 border-t border-ink/8 max-w-[640px]">
-          <span className="text-orange text-sm tracking-widest">★★★★★</span>
-          <span className="text-[13px] text-ink-soft">
-            Trusted by <strong className="text-ink font-semibold">80+ founders</strong> across legal, healthcare & professional services
-          </span>
-        </div>
 
         {/* Hero product card */}
         <div className="relative mt-20">
