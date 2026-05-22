@@ -5,6 +5,7 @@ import { LogoStrip } from "@/components/LogoStrip";
 import { ProblemSection } from "@/components/ProblemSection";
 import { FrameworkSection } from "@/components/FrameworkSection";
 import { CaseStudySection } from "@/components/CaseStudySection";
+import { ShowcaseSection } from "@/components/ShowcaseSection";
 import { AboutSection } from "@/components/AboutSection";
 import { BlogSection } from "@/components/BlogSection";
 import { CtaSection } from "@/components/CtaSection";
@@ -36,6 +37,7 @@ function Index() {
       <LogoStrip />
       <ProblemSection />
       <FrameworkSection />
+      <ShowcaseSection />
       <CaseStudySection />
       <AboutSection />
       <BlogSection />
