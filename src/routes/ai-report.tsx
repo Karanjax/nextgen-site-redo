@@ -431,12 +431,12 @@ function Hero({ variant }: { variant: Variant }) {
 
 // ---------- Competitor table ----------
 function CompetitorTable() {
-  const rows = [
+  const rows: Array<{ name: string; score: number; ai: "featured" | "cited" | "mentioned" | "not"; local: string; organic: string; me?: boolean }> = [
     { name: FIRM_NAME, score: MAIN_SCORE, ai: "not", local: "#4", organic: "#8", me: true },
     { name: "Strom Law Firm", score: 78, ai: "featured", local: "#1", organic: "#2" },
     { name: "McWhirter, Bellinger & Assoc.", score: 64, ai: "cited", local: "#2", organic: "#3" },
     { name: "Joye Law Firm", score: 58, ai: "mentioned", local: "#3", organic: "#5" },
-  ] as const;
+  ];
   return (
     <div className="overflow-x-auto">
       <table className="w-full text-sm" style={{ borderCollapse: "collapse" }}>
