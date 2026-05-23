@@ -2,11 +2,11 @@ import { Link } from "@tanstack/react-router";
 import witLogo from "@/assets/wit-logo-full.png";
 
 const navLinks = [
-  { label: "Framework", href: "#framework" },
-  { label: "Results", href: "#results" },
-  { label: "About", href: "#about" },
-  { label: "Insights", href: "#blog" },
-  { label: "Pricing", href: "#pricing" },
+  { label: "Framework", href: "/#framework" },
+  { label: "Results", href: "/#results" },
+  { label: "About", href: "/#about" },
+  { label: "Insights", href: "/#blog" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export function Navbar() {
@@ -35,15 +35,25 @@ export function Navbar() {
       </Link>
 
       <div className="hidden md:flex gap-2 justify-center">
-        {navLinks.map((link) => (
-          <a
-            key={link.href}
-            href={link.href}
-            className="px-3.5 py-2 text-sm font-medium rounded-full text-ink-soft hover:text-ink hover:bg-bg-tint transition-all duration-200"
-          >
-            {link.label}
-          </a>
-        ))}
+        {navLinks.map((link) =>
+          link.href.startsWith("/") && !link.href.includes("#") ? (
+            <Link
+              key={link.href}
+              to={link.href}
+              className="px-3.5 py-2 text-sm font-medium rounded-full text-ink-soft hover:text-ink hover:bg-bg-tint transition-all duration-200"
+            >
+              {link.label}
+            </Link>
+          ) : (
+            <a
+              key={link.href}
+              href={link.href}
+              className="px-3.5 py-2 text-sm font-medium rounded-full text-ink-soft hover:text-ink hover:bg-bg-tint transition-all duration-200"
+            >
+              {link.label}
+            </a>
+          )
+        )}
       </div>
 
       <a

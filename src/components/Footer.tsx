@@ -1,5 +1,13 @@
+import { Link } from "@tanstack/react-router";
+
 const services = ["SEO + AEO + GEO", "Website Development", "Social Media Management", "Automations + AI", "GBP Optimization"];
-const company = ["About Kara", "The Framework", "Case Studies", "Blog", "Contact"];
+const company = [
+  { label: "About Kara", href: "#about" },
+  { label: "The Framework", href: "#framework" },
+  { label: "Case Studies", href: "#results" },
+  { label: "Blog", href: "#blog" },
+  { label: "Contact", href: "/contact" },
+];
 const connect = ["kara@womanintech.com", "LinkedIn", "Instagram", "Facebook"];
 
 export function Footer() {
@@ -34,8 +42,14 @@ export function Footer() {
           <div>
             <h4 className="text-[11px] font-bold uppercase tracking-widest text-ink-mute mb-4.5">Company</h4>
             <ul className="space-y-2.5">
-              {company.map((s) => (
-                <li key={s}><a href="#" className="text-sm text-ink-soft hover:text-magenta transition-colors">{s}</a></li>
+              {company.map((item) => (
+                <li key={item.label}>
+                  {item.href.startsWith("/") ? (
+                    <Link to={item.href} className="text-sm text-ink-soft hover:text-magenta transition-colors">{item.label}</Link>
+                  ) : (
+                    <a href={item.href} className="text-sm text-ink-soft hover:text-magenta transition-colors">{item.label}</a>
+                  )}
+                </li>
               ))}
             </ul>
           </div>
