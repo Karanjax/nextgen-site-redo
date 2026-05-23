@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import witLogo from "@/assets/wit-logo-full.png";
+import contactPhone from "@/assets/contact-phone.png";
 
 export const Route = createFileRoute("/contact")({
   component: ContactPage,
