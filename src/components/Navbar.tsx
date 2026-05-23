@@ -2,11 +2,11 @@ import { Link } from "@tanstack/react-router";
 import witLogo from "@/assets/wit-logo-full.png";
 
 const navLinks = [
-  { label: "Framework", href: "#framework" },
-  { label: "Results", href: "#results" },
-  { label: "About", href: "#about" },
-  { label: "Insights", href: "#blog" },
-  { label: "Pricing", href: "#pricing" },
+  { label: "Framework", href: "/#framework" },
+  { label: "Results", href: "/#results" },
+  { label: "About", href: "/#about" },
+  { label: "Insights", href: "/#blog" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export function Navbar() {
