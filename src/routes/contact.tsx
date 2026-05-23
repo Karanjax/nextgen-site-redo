@@ -73,17 +73,27 @@ function ContactPage() {
       {/* Hero */}
       <section className="pt-36 pb-16 px-6 md:pt-44 md:pb-20">
         <div className="max-w-[1200px] mx-auto">
-          <div className="max-w-2xl">
-            <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-magenta-soft text-magenta mb-6">
-              Get in Touch
-            </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-ink leading-[1.1] mb-5">
-              Let’s talk about your{" "}
-              <span className="gradient-text">visibility</span>
-            </h1>
-            <p className="text-lg md:text-xl text-ink-soft leading-relaxed max-w-xl">
-              Whether you need a full strategy overhaul or just want to understand where you stand in AI search, I’d love to hear from you.
-            </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div className="max-w-xl">
+              <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-magenta-soft text-magenta mb-6">
+                Get in Touch
+              </span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-ink leading-[1.1] mb-5">
+                Let’s talk about your{" "}
+                <span className="gradient-text">visibility</span>
+              </h1>
+              <p className="text-lg md:text-xl text-ink-soft leading-relaxed">
+                Whether you need a full strategy overhaul or just want to understand where you stand in AI search, I’d love to hear from you.
+              </p>
+            </div>
+            <div className="flex justify-center lg:justify-end">
+              <img
+                src={contactPhone}
+                alt="Phone showing visibility analytics dashboard"
+                className="w-auto h-[380px] md:h-[440px] object-contain drop-shadow-2xl"
+                loading="eager"
+              />
+            </div>
           </div>
         </div>
       </section>
