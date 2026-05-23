@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import witLogo from "@/assets/wit-logo-full.png";
-import { blogPosts, getPostBySlug } from "@/lib/blog-posts";
+import { blogPosts, getPostBySlug, type BlogPost } from "@/lib/blog-posts";
+
 
 export const Route = createFileRoute("/blog/$slug")({
   component: BlogPostPage,
@@ -141,7 +142,7 @@ function BlogPostPage() {
 
           {/* Body */}
           <div className="space-y-6 text-[17px] leading-[1.75] text-ink-soft">
-            {post.content.map((block, i) => {
+            {(post.content as BlogPost["content"]).map((block, i: number) => {
               if (block.type === "h2") {
                 return (
                   <h2 key={i} className="text-2xl md:text-3xl font-bold text-ink tracking-tight pt-6">
@@ -169,8 +170,9 @@ function BlogPostPage() {
               if (block.type === "ul") {
                 return (
                   <ul key={i} className="list-disc pl-6 space-y-2 marker:text-magenta">
-                    {block.items?.map((item, j) => (
+                    {block.items?.map((item: string, j: number) => (
                       <li key={j}>{item}</li>
+
                     ))}
                   </ul>
                 );
