@@ -1,4 +1,11 @@
 import { useRef, useEffect, useState } from "react";
+import websiteDesktop from "@/assets/scm-website-desktop.png";
+import websiteMobile from "@/assets/scm-website-mobile.png";
+import socialSteam from "@/assets/scm-social-steam.png";
+import socialMagnifier from "@/assets/scm-social-magnifier.png";
+import socialCommittee from "@/assets/scm-social-committee.png";
+
+
 
 function AnimatedNumber({ value, suffix = "" }: { value: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
