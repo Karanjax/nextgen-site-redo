@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import witLogo from "@/assets/wit-logo.png";
+import witLogo from "@/assets/wit-logo-full.png";
 
 const navLinks = [
   { label: "Framework", href: "#framework" },
@@ -26,15 +26,12 @@ export function Navbar() {
         boxShadow: "0 1px 2px rgba(11,20,55,0.04), 0 2px 6px rgba(11,20,55,0.04)",
       }}
     >
-      <Link to="/" className="flex items-center gap-2.5 font-bold text-[17px] tracking-tight">
+      <Link to="/" className="flex items-center" aria-label="Woman In Tech home">
         <img
           src={witLogo}
-          alt="Woman In Tech logo"
-          width={32}
-          height={32}
-          className="w-8 h-8 object-contain"
+          alt="Woman In Tech"
+          className="h-10 w-auto object-contain"
         />
-        Woman In Tech
       </Link>
 
       <div className="hidden md:flex gap-2 justify-center">
