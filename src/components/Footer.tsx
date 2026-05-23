@@ -1,5 +1,13 @@
+import { Link } from "@tanstack/react-router";
+
 const services = ["SEO + AEO + GEO", "Website Development", "Social Media Management", "Automations + AI", "GBP Optimization"];
-const company = ["About Kara", "The Framework", "Case Studies", "Blog", "Contact"];
+const company = [
+  { label: "About Kara", href: "#about" },
+  { label: "The Framework", href: "#framework" },
+  { label: "Case Studies", href: "#results" },
+  { label: "Blog", href: "#blog" },
+  { label: "Contact", href: "/contact" },
+];
 const connect = ["kara@womanintech.com", "LinkedIn", "Instagram", "Facebook"];
 
 export function Footer() {
