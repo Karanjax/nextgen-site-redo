@@ -1,4 +1,11 @@
 import { useRef, useEffect, useState } from "react";
+import websiteDesktop from "@/assets/scm-website-desktop.png";
+import websiteMobile from "@/assets/scm-website-mobile.png";
+import socialSteam from "@/assets/scm-social-steam.png";
+import socialMagnifier from "@/assets/scm-social-magnifier.png";
+import socialCommittee from "@/assets/scm-social-committee.png";
+
+
 
 function AnimatedNumber({ value, suffix = "" }: { value: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -67,6 +74,50 @@ export function CaseStudySection() {
             {tags.map((t) => (
               <span key={t} className="text-[11px] font-semibold px-2.5 py-1 bg-white border border-line rounded-full text-ink-soft">{t}</span>
             ))}
+          </div>
+        </div>
+
+        {/* Device mockup with social posts */}
+        <div className="relative mb-[80px] z-10">
+          <div className="relative max-w-[920px] mx-auto" style={{ aspectRatio: "16 / 11" }}>
+            {/* Laptop */}
+            <div className="absolute inset-0 flex items-start justify-center pt-[4%]">
+              <div className="w-[78%] max-w-[760px]">
+                <div className="relative bg-[#1a1a1a] rounded-t-[14px] p-2 md:p-2.5 shadow-2xl">
+                  <div className="aspect-[16/10] bg-white rounded-[6px] overflow-hidden">
+                    <img src={websiteDesktop} alt="Sarasota Children's Museum homepage" className="w-full h-full object-cover object-top" />
+                  </div>
+                </div>
+                <div className="h-2 bg-gradient-to-b from-[#2a2a2a] to-[#0d0d0d] rounded-b-[20px] mx-[-3%] shadow-xl" />
+                <div className="h-1.5 bg-[#1a1a1a] rounded-b-[8px] w-[14%] mx-auto" />
+              </div>
+            </div>
+
+            {/* Floating phone */}
+            <div className="absolute right-[4%] md:right-[8%] bottom-[-2%] w-[26%] max-w-[170px] z-30">
+              <div className="relative bg-[#1a1a1a] rounded-[22px] p-1.5 shadow-2xl border border-[#333]">
+                <div className="aspect-[9/19] bg-white rounded-[18px] overflow-hidden">
+                  <img src={websiteMobile} alt="Sarasota Children's Museum mobile site" className="w-full h-full object-cover object-top" />
+                </div>
+              </div>
+            </div>
+
+            {/* Floating social posts */}
+            <div className="hidden md:block absolute left-[-2%] top-[10%] w-[18%] max-w-[150px] rotate-[-8deg] z-20 transition-transform duration-300 hover:rotate-[-4deg] hover:scale-105">
+              <div className="rounded-xl overflow-hidden shadow-2xl ring-1 ring-black/5 bg-white">
+                <img src={socialSteam} alt="STEAM Machine social post" className="w-full h-auto block" />
+              </div>
+            </div>
+            <div className="hidden md:block absolute left-[8%] bottom-[-2%] w-[16%] max-w-[130px] rotate-[6deg] z-20 transition-transform duration-300 hover:rotate-[3deg] hover:scale-105">
+              <div className="rounded-xl overflow-hidden shadow-2xl ring-1 ring-black/5 bg-white">
+                <img src={socialMagnifier} alt="Giving Challenge social post" className="w-full h-auto block" />
+              </div>
+            </div>
+            <div className="hidden md:block absolute right-[-2%] top-[4%] w-[17%] max-w-[140px] rotate-[7deg] z-20 transition-transform duration-300 hover:rotate-[3deg] hover:scale-105">
+              <div className="rounded-xl overflow-hidden shadow-2xl ring-1 ring-black/5 bg-white">
+                <img src={socialCommittee} alt="Committee members social post" className="w-full h-auto block" />
+              </div>
+            </div>
           </div>
         </div>
 
