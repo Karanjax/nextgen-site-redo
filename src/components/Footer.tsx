@@ -42,8 +42,14 @@ export function Footer() {
           <div>
             <h4 className="text-[11px] font-bold uppercase tracking-widest text-ink-mute mb-4.5">Company</h4>
             <ul className="space-y-2.5">
-              {company.map((s) => (
-                <li key={s}><a href="#" className="text-sm text-ink-soft hover:text-magenta transition-colors">{s}</a></li>
+              {company.map((item) => (
+                <li key={item.label}>
+                  {item.href.startsWith("/") ? (
+                    <Link to={item.href} className="text-sm text-ink-soft hover:text-magenta transition-colors">{item.label}</Link>
+                  ) : (
+                    <a href={item.href} className="text-sm text-ink-soft hover:text-magenta transition-colors">{item.label}</a>
+                  )}
+                </li>
               ))}
             </ul>
           </div>
