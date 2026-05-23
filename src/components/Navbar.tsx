@@ -35,15 +35,25 @@ export function Navbar() {
       </Link>
 
       <div className="hidden md:flex gap-2 justify-center">
-        {navLinks.map((link) => (
-          <a
-            key={link.href}
-            href={link.href}
-            className="px-3.5 py-2 text-sm font-medium rounded-full text-ink-soft hover:text-ink hover:bg-bg-tint transition-all duration-200"
-          >
-            {link.label}
-          </a>
-        ))}
+        {navLinks.map((link) =>
+          link.href.startsWith("/") && !link.href.includes("#") ? (
+            <Link
+              key={link.href}
+              to={link.href}
+              className="px-3.5 py-2 text-sm font-medium rounded-full text-ink-soft hover:text-ink hover:bg-bg-tint transition-all duration-200"
+            >
+              {link.label}
+            </Link>
+          ) : (
+            <a
+              key={link.href}
+              href={link.href}
+              className="px-3.5 py-2 text-sm font-medium rounded-full text-ink-soft hover:text-ink hover:bg-bg-tint transition-all duration-200"
+            >
+              {link.label}
+            </a>
+          )
+        )}
       </div>
 
       <a
