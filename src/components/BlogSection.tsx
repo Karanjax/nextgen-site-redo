@@ -1,27 +1,9 @@
-import blogAiSearch from "@/assets/blog-ai-search.jpg";
-import blogStrategy from "@/assets/blog-strategy.jpg";
-import blogSchema from "@/assets/blog-schema.jpg";
+import { Link } from "@tanstack/react-router";
+import { blogPosts } from "@/lib/blog-posts";
 
-const posts = [
-  {
-    image: blogAiSearch,
-    cat: "AI Search",
-    time: "4 min read",
-    title: "Why law firms need a complete digital system to stay visible in AI search.",
-  },
-  {
-    image: blogStrategy,
-    cat: "Strategy",
-    time: "6 min read",
-    title: "Beyond the search bar: 5 ways law firms must pivot for the AI revolution.",
-  },
-  {
-    image: blogSchema,
-    cat: "Schema",
-    time: "5 min read",
-    title: "Schema markup: the secret behind websites Google and AI choose to cite.",
-  },
-];
+const posts = blogPosts;
+
+
 
 export function BlogSection() {
   return (
@@ -44,7 +26,12 @@ export function BlogSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {posts.map((post) => (
-            <article key={post.title} className="bg-white border border-line rounded-[20px] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_4px_12px_rgba(11,20,55,0.06),0_12px_32px_rgba(11,20,55,0.08)] group">
+            <Link
+              key={post.slug}
+              to="/blog/$slug"
+              params={{ slug: post.slug }}
+              className="bg-white border border-line rounded-[20px] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_4px_12px_rgba(11,20,55,0.06),0_12px_32px_rgba(11,20,55,0.08)] group"
+            >
               <div className="aspect-video overflow-hidden">
                 <img src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" width={800} height={512} />
               </div>
@@ -58,7 +45,7 @@ export function BlogSection() {
                   Read article <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
                 </span>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </div>
