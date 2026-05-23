@@ -18,7 +18,7 @@ export function Navbar() {
         gridTemplateColumns: "auto 1fr auto",
         alignItems: "center",
         gap: "32px",
-        padding: "10px 12px 10px 20px",
+        padding: "6px 12px 6px 16px",
         background: "rgba(255, 255, 255, 0.85)",
         backdropFilter: "blur(20px)",
         border: "1px solid var(--line)",
@@ -30,7 +30,7 @@ export function Navbar() {
         <img
           src={witLogo}
           alt="Woman In Tech"
-          className="h-14 w-auto object-contain"
+          className="h-20 w-auto object-contain"
         />
       </Link>
 
