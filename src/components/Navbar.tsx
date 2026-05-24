@@ -4,7 +4,7 @@ import witLogo from "@/assets/wit-logo-full.png";
 const navLinks = [
   { label: "Framework", href: "/#framework" },
   { label: "Results", href: "/#results" },
-  { label: "About", href: "/#about" },
+  { label: "About", href: "/about" },
   { label: "Insights", href: "/#blog" },
   { label: "Contact", href: "/contact" },
 ];

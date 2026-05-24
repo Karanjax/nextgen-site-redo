@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BeFoundFrameworkRouteImport } from './routes/be-found-framework'
 import { Route as AiReportRouteImport } from './routes/ai-report'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
@@ -30,6 +31,11 @@ const AiReportRoute = AiReportRouteImport.update({
   path: '/ai-report',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -43,6 +49,7 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/ai-report': typeof AiReportRoute
   '/be-found-framework': typeof BeFoundFrameworkRoute
   '/contact': typeof ContactRoute
@@ -50,6 +57,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/ai-report': typeof AiReportRoute
   '/be-found-framework': typeof BeFoundFrameworkRoute
   '/contact': typeof ContactRoute
@@ -58,6 +66,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/ai-report': typeof AiReportRoute
   '/be-found-framework': typeof BeFoundFrameworkRoute
   '/contact': typeof ContactRoute
@@ -67,15 +76,23 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/ai-report'
     | '/be-found-framework'
     | '/contact'
     | '/blog/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/ai-report' | '/be-found-framework' | '/contact' | '/blog/$slug'
+  to:
+    | '/'
+    | '/about'
+    | '/ai-report'
+    | '/be-found-framework'
+    | '/contact'
+    | '/blog/$slug'
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/ai-report'
     | '/be-found-framework'
     | '/contact'
@@ -84,6 +101,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   AiReportRoute: typeof AiReportRoute
   BeFoundFrameworkRoute: typeof BeFoundFrameworkRoute
   ContactRoute: typeof ContactRoute
@@ -113,6 +131,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AiReportRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -132,6 +157,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   AiReportRoute: AiReportRoute,
   BeFoundFrameworkRoute: BeFoundFrameworkRoute,
   ContactRoute: ContactRoute,
