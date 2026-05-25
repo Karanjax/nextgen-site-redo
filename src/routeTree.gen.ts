@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ResultsRouteImport } from './routes/results'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BeFoundFrameworkRouteImport } from './routes/be-found-framework'
 import { Route as AiReportRouteImport } from './routes/ai-report'
@@ -16,6 +17,11 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
+const ResultsRoute = ResultsRouteImport.update({
+  id: '/results',
+  path: '/results',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
@@ -53,6 +59,7 @@ export interface FileRoutesByFullPath {
   '/ai-report': typeof AiReportRoute
   '/be-found-framework': typeof BeFoundFrameworkRoute
   '/contact': typeof ContactRoute
+  '/results': typeof ResultsRoute
   '/blog/$slug': typeof BlogSlugRoute
 }
 export interface FileRoutesByTo {
@@ -61,6 +68,7 @@ export interface FileRoutesByTo {
   '/ai-report': typeof AiReportRoute
   '/be-found-framework': typeof BeFoundFrameworkRoute
   '/contact': typeof ContactRoute
+  '/results': typeof ResultsRoute
   '/blog/$slug': typeof BlogSlugRoute
 }
 export interface FileRoutesById {
@@ -70,6 +78,7 @@ export interface FileRoutesById {
   '/ai-report': typeof AiReportRoute
   '/be-found-framework': typeof BeFoundFrameworkRoute
   '/contact': typeof ContactRoute
+  '/results': typeof ResultsRoute
   '/blog/$slug': typeof BlogSlugRoute
 }
 export interface FileRouteTypes {
@@ -80,6 +89,7 @@ export interface FileRouteTypes {
     | '/ai-report'
     | '/be-found-framework'
     | '/contact'
+    | '/results'
     | '/blog/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -88,6 +98,7 @@ export interface FileRouteTypes {
     | '/ai-report'
     | '/be-found-framework'
     | '/contact'
+    | '/results'
     | '/blog/$slug'
   id:
     | '__root__'
@@ -96,6 +107,7 @@ export interface FileRouteTypes {
     | '/ai-report'
     | '/be-found-framework'
     | '/contact'
+    | '/results'
     | '/blog/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -105,11 +117,19 @@ export interface RootRouteChildren {
   AiReportRoute: typeof AiReportRoute
   BeFoundFrameworkRoute: typeof BeFoundFrameworkRoute
   ContactRoute: typeof ContactRoute
+  ResultsRoute: typeof ResultsRoute
   BlogSlugRoute: typeof BlogSlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/results': {
+      id: '/results'
+      path: '/results'
+      fullPath: '/results'
+      preLoaderRoute: typeof ResultsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contact': {
       id: '/contact'
       path: '/contact'
@@ -161,17 +181,9 @@ const rootRouteChildren: RootRouteChildren = {
   AiReportRoute: AiReportRoute,
   BeFoundFrameworkRoute: BeFoundFrameworkRoute,
   ContactRoute: ContactRoute,
+  ResultsRoute: ResultsRoute,
   BlogSlugRoute: BlogSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-  }
-}
